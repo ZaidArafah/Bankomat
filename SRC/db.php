@@ -1,7 +1,7 @@
 <?php
 declare(strict_types= 1);
 
-$dbpath = __DIR__ ."bankomat.db";
+$dbpath = __DIR__ .'/../bankomat.db';
 $pdo = new PDO('sqlite:' . $dbpath);
 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

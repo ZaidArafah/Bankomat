@@ -14,7 +14,6 @@ function csrf_token(): string {
     return $_SESSION['csrf_token'];
 }
 
-
 function csrf_verify(): void { 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
        if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
@@ -23,19 +22,18 @@ function csrf_verify(): void {
     }
 }  
 
-
-function requrie_login(): void {
+function require_login(): void {
     if (empty($_SESSION['user_id'])) {
         header('Location: /login');
         exit;
     }               
 }
 
-
-
-function requrie_role(string $role): void {
+function require_role(string $role): void {
     if (($_SESSION['role'] ?? '') !== $role) {
         http_response_code(403);
         die("403- Forbidden: You don't have permission to access this page.");
     }
 }
+
+?>

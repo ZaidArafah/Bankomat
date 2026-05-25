@@ -19,7 +19,7 @@ $pinhash = password_hash('1234', PASSWORD_BCRYPT, ['cost' => 12]);
 
 
 $stmt = $db->prepare("INSERT INTO users (card_number, pin_hash, name, role) VALUES (?,?,?,?)");
-$stmt->execute(['11112222', $pinhash, 'admin karin', 'admin']);
+$stmt->execute(['11112222', $pinhash, 'admin Zaid', 'admin']);
 $adminId = $db->lastInsertId();
 $db->prepare("INSERT INTO accounts (user_id, account_type, balance) 
 VALUES (?, 'checking', 15000.00)")->execute([$adminId]);
@@ -41,7 +41,7 @@ VALUES (?, 'checking', 1500.00)")->execute([$annaId]);
 
 echo "testkonto: 
 (pin: 1234, 
-user1: 11112222,
+admin: 11112222,
 user2: 33334444,
 user3: 55556666)";
 

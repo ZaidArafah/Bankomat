@@ -3,13 +3,15 @@ declare(strict_types= 1);
 
 
 class TransactionRepository {
-    public function __construct(private PDO $pdo) {}
+    public function __construct(private PDO $pdo) {}    
 
+    // hämta alla transaktioner, till admin.
     public function findAll() : array {
         return $this->pdo->query("select * from transactions order by created_at desc")
         ->fetchAll();
     }
     
+   // insättning.
     public function deposit (int $account_id, float $amount): void {
         if ($amount <= 0) throw new InvalidArgumentException("Amount must be greater than 0.");
     
@@ -32,7 +34,8 @@ class TransactionRepository {
 }
  
     
-   public function withdraw (int $account_id, float $amount): void {
+// uttag.   
+public function withdraw (int $account_id, float $amount): void {
     if ($amount <= 0) throw new InvalidArgumentException("Amount must be greater than 0");
 
     try {
@@ -55,6 +58,7 @@ class TransactionRepository {
 }
 
 
+    // överföring.
     public function transfer (int $from_account_id, int $to_account_id, float $amount): void {
         if ($amount <= 0) throw new InvalidArgumentException("Amount must be greater than 0");
         if ($from_account_id === $to_account_id) throw new InvalidArgumentException("choice tow different accounts for transfer.");
@@ -80,15 +84,5 @@ class TransactionRepository {
             $this->pdo->rollBack();
             throw $e;
         }
-            
-
-
-
-
-
-
-
-
-}
-    
+    }
 }    
