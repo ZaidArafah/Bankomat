@@ -132,5 +132,36 @@ case '/withdraw':
         }
         require __DIR__. '/../templates/transfer.php';
         break;   
+    
+
+    //---------------- admin: se alla funktioner -----------------------  
+    case '/admin/users':
+        
+        require_login();
+        require_role('admin'); 
+        
+        $users = $userRepo->findall(); 
+        require __DIR__ . '/../templates/admin_users.php';
+        break;
+
+    case '/admin/accounts':
+        require_login();
+        require_role('admin');
+        
+        $accounts = $accountRepo->findallwithOwners();
+        require __DIR__ . '/../templates/admin_accounts.php';
+        break;
+
+    case '/admin/transactions':
+        require_login();
+        require_role('admin');
+        $transactions = $transactionRepo->findAll();
+        require __DIR__ . '/../templates/admin_transactions.php';
+        break;
+
+    case '/logout':
+        session_destroy(); 
+        header('Location: /login'); 
+        exit;
     }
 ?>

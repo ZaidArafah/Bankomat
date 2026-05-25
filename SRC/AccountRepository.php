@@ -18,11 +18,12 @@ class AccountRepository {
         return $stmt->fetch() ?: null;
     }
 
-   // Hämta alla konton med ägarens namn, användbart för admin. 
-    public function findallwithOwners(): array {
-        return $this->pdo->query ("
-        select accounts.* users.name as owner_name from accounts
-        join users on accounts.user_id = users.id")
-        ->fetchAll ();
-    }
+   // Hämta alla konton med ägarens namn, användbart för admin.
+public function findallwithOwners(): array {
+    return $this->pdo->query("
+        SELECT accounts.*, users.name AS owner_name 
+        FROM accounts
+        JOIN users ON accounts.user_id = users.id
+    ")->fetchAll();
+}
 }
