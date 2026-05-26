@@ -2,6 +2,8 @@
 declare(strict_types= 1);
 
 class TransactionRepository {
+
+    // PDO-objektet som används för databasinteraktion.
     public function __construct(private PDO $pdo) {}    
 
     // hämta alla transaktioner, till admin.

@@ -4,7 +4,8 @@
 <body>
     <h1>Bankomat Ab</h1>
 
-    // om fel lösenord angetts, e() för xss-skydd.
+    <!-- om fel lösenord angetts, e() för xss-skydd. -->
+     <h2>Inloggning</h2>
     <?php if (!empty($error) ): ?><p style="color: red;"><?= e($error) ?></p><?php endif; ?>
 
         <form method="post" action="/login">

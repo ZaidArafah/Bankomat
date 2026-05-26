@@ -10,12 +10,16 @@
 <h1>Transfer money between your accounts</h1>
 <p><a href="/dashboard">Tillbaka till dashboard</a></p>
 <hr>
+
+
 <?php if (!empty($success)): ?>
     <p style="color: green;"><?= e($success) ?></p><?php endif; ?>
 <?php if (!empty($error)): ?>
     <p style="color: red;"><?= e($error) ?></p><?php endif; ?>
 <form method="post" action="/transfer">
-    <input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>;">
+
+
+<input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>;">
 
    <p><label>From account:<br>
      <select name="from_account_id" required>
