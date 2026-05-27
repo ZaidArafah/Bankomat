@@ -29,6 +29,7 @@ switch ($path) {
     case '/':
         case '/login':
             if($method === 'POST') {
+                csrf_verify();
                 $card = trim($_POST['card_number'] ?? '');
                 $pin = $_POST['pin'] ?? '';
                 $user = $userRepo->findbycardnumber($card);
@@ -61,6 +62,7 @@ switch ($path) {
                     $accounts = $accountRepo->findByUserId((int)$_SESSION['user_id']);
                     if ($method === 'POST') {
                         
+                        csrf_verify();
                         $accid = (int)$_POST['account_id'] ?? 0;
         
                         $amount = (float)$_POST['amount'] ?? 0;
@@ -86,6 +88,7 @@ case '/withdraw':
     require_login();
     $accounts = $accountRepo->findByUserId((int)$_SESSION['user_id']);
     if ($method === 'POST') {
+        csrf_verify();
         $accid = (int)$_POST['account_id'] ?? 0;
         $amount = (float)$_POST['amount'] ?? 0;
         $account = $accountRepo->findByIdanduserId($accid, (int)$_SESSION['user_id']);
@@ -112,6 +115,7 @@ case '/withdraw':
     
         $accounts = $accountRepo->findByUserId((int)$_SESSION['user_id']);
         if ($method === 'POST') {
+            csrf_verify();
             $from_accid = (int)$_POST['from_account_id'] ?? 0;
             $to_accid = (int)$_POST['to_account_id'] ?? 0;   
          $amount = (float)$_POST['amount'] ?? 0;
