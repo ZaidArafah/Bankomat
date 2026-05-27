@@ -19,7 +19,7 @@
 <form method="post" action="/transfer">
 
 
-<input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>;">
+<input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>">
 
    <p><label>From account:<br>
      <select name="from_account_id" required>
